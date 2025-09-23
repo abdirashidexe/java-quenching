@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
@@ -37,7 +39,25 @@ public class Practice {
      * @throws NullPointerException if words is null
      */
     public static String shortestWord(Set<String> words) {
-        return null;
+
+        if (words == null) throw new NullPointerException();
+        if (words.size() == 0) throw new IllegalArgumentException();
+
+        ArrayList<String> list = new ArrayList<>();
+        list.addAll(words);
+        Collections.sort(list);
+
+        String shortestWord = list.get(0);
+
+        for (String word : words)
+        {
+            if (word.length() < shortestWord.length())
+            {
+                shortestWord = word;
+            }
+        }
+
+        return shortestWord;
     }
 
     /**
