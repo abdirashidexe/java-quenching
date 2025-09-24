@@ -173,7 +173,7 @@ public class Practice {
 
         levels = Math.max(leftLevels, rightLevels);
 
-        return levels;
+        return 1 + levels;
     }
 
 
@@ -201,9 +201,20 @@ public class Practice {
      * @return the sum of the nodes at the given level
      */
     public static int sumAtLevel(BinaryTreeNode<Integer> root, int level) {
-        return 0;
-    }
 
+        if (root == null) return 0;
+
+        if (level == 1) return root.data;
+
+        int sum  = 0;
+
+        int leftSum = sumAtLevel(root.left, level-1);
+        int rightSum = sumAtLevel(root.right, level-1);
+        
+        sum = leftSum + rightSum;
+
+        return sum;
+    }
 
     /**
      * Returns true if the sum of the values in a given tree is equal to the sum
