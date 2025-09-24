@@ -269,7 +269,24 @@ public class Practice {
      * @return the sum of all the vertices
      */
     public static int graphSum(Vertex<Integer> start) {
-        return 0;
+        HashSet<Vertex<Integer>> myVisited = new HashSet<>();
+
+        return graphSumHelper(start, myVisited);
+    }
+
+    public static int graphSumHelper(Vertex<Integer> vertex, Set<Vertex<Integer>> visited)
+    {
+        if (vertex == null || visited.contains(vertex)) return 0;
+
+        visited.add(vertex);
+        int total = vertex.data;
+
+        for (Vertex<Integer> neighbor : vertex.neighbors)
+        {
+            total += graphSumHelper(neighbor, visited);
+        }
+
+        return total;
     }
 
     /**
