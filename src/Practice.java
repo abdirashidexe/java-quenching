@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -126,7 +127,25 @@ public class Practice {
      * @return a frequency map of values in the list
      */
     public static <T> Map<T, Integer> frequencies(ListNode<T> head) {
-        return null;
+
+        if (head == null) return new HashMap<>();
+
+        Map<T, Integer> valuesMap = new HashMap<>();
+        ListNode<T> current = head;
+
+        while (current != null)
+        {
+            if (!valuesMap.containsKey(current.data))
+            {
+                valuesMap.put(current.data, 1);
+            } else {
+                int temp = valuesMap.get(current.data) + 1;
+                valuesMap.put(current.data, temp);
+            }
+            current = current.next;
+        }
+
+        return valuesMap;
     }
 
 
